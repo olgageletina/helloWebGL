@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OG WebGL Hello</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="mycanvas"></canvas>
+</body>
+<script id="vertex-shader" type="text/glsl">
+  attribute vec4 position;
+  
+  void main(){
+    gl_Position = position;
+  }
+</script>
+<script id="fragment-shader" type="text/glsl">
+  #ifdef GL_ES
+  precision highp float;
+  #endif
+
+  uniform vec2 mouse;
+
+  void main () {
+      float xCord = gl_FragCoord.x/mouse.x;
+      float yCord = gl_FragCoord.y/mouse.y;
+
+      gl_FragColor = vec4(xCord, yCord, 0.5, 1);
+  }
+</script>
+<script src="gradientWebGL.js"></script>
+</html>
